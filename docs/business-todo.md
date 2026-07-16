@@ -35,8 +35,12 @@
        personal gmail). Cheapest paths: email forwarding via
        ImprovMX/Cloudflare (free) or Zoho Mail (free tier) before paying
        for Google Workspace. — Eli
-5. [ ] **DNS + site live** — GitHub Pages custom domain: A/ALIAS records
-       in Route 53 → Pages, enforce HTTPS. — Eli (steps in repo)
+5. [x] **DNS + site live** — done 2026-07-16: records managed as Terraform
+       in `infra/` (imported, plan clean), site serving at
+       vapor.engineering; HTTPS enforcement flips when GitHub's cert
+       finishes provisioning. Longer-term: the domain + zone live on Eli's
+       PERSONAL AWS account — migrate to a company AWS account when the
+       LLC has a bank account to pay for it. — Eli
 6. [ ] **Steamworks onboarding** — partner.steamgames.com as the LLC
        (legal name, EIN, bank). Verification takes days-weeks; start as
        soon as 1+2 are done even though no game is ready — the clock is
