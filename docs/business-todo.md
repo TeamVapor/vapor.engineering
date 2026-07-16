@@ -40,11 +40,11 @@
        finishes provisioning. Longer-term: the domain + zone live on Eli's
        PERSONAL AWS account — migrate to a company AWS account when the
        LLC has a bank account to pay for it. — Eli
-6. [ ] **Steamworks onboarding** — partner.steamgames.com as the LLC
-       (legal name, EIN, bank). Verification takes days-weeks; start as
-       soon as 1+2 are done even though no game is ready — the clock is
-       the point. $100/app fee comes later, per title. — both (Jack's
-       game likely ships first)
+6. [~] **Steamworks onboarding** — SUBMITTED 2026-07-16 (same day as
+       everything else): partner account created as the LLC ($100 fee,
+       recoupable/first-app credit), tax interview done as single-member
+       LLC, identity verification pending 2-7 business days. Retake the
+       tax interview as a partnership when Jack formally joins. — Eli
 7. [ ] **DBA decisions** — if a game ships under "Vapor Studios" or
        "TeamVapor" branding, file the assumed business name (~$50, Oregon
        online). Decide when store pages get built, not before. — both
