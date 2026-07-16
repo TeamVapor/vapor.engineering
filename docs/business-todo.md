@@ -22,9 +22,8 @@
 
 ## Next, in dependency order
 
-1. [ ] **EIN** — irs.gov "Apply for an EIN online", needs the approved LLC.
-       Free, ~15 min, instant letter PDF. Do it directly at irs.gov (never
-       the paid third-party sites). — Eli
+1. [x] **EIN** — assigned 2026-07-16, same day as the Articles. Letter PDF
+       in Eli's records (number deliberately not in this public repo). — Eli
 2. [ ] **Business bank account** — bring Articles + EIN letter + operating
        agreement (even the draft works for most banks). Steam pays here;
        reimbursements and renewals migrate here. — Eli
