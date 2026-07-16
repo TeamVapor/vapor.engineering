@@ -24,9 +24,9 @@
 
 1. [x] **EIN** — assigned 2026-07-16, same day as the Articles. Letter PDF
        in Eli's records (number deliberately not in this public repo). — Eli
-2. [ ] **Business bank account** — bring Articles + EIN letter + operating
-       agreement (even the draft works for most banks). Steam pays here;
-       reimbursements and renewals migrate here. — Eli
+2. [~] **Business bank account** — Mercury application submitted
+       2026-07-16 with Articles + EIN; ~1-day review, then account ready.
+       Steam pays here; reimbursements and renewals migrate here. — Eli
 3. [ ] **Bookkeeping, minimum viable** — a spreadsheet is fine at this
        scale: the fronted-expense ledger + every company transaction.
        Upgrade to real software when there's revenue. — Eli
