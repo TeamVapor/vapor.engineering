@@ -13,11 +13,12 @@
 
 ## Waiting ⏳
 
-- [ ] LLC filing acknowledgment email from Oregon SoS (~1 business day
-      from 2026-07-16; then the registry entry goes active)
-- [ ] Domain registration completes (Route 53 email confirmation; usually
-      minutes-to-hours)
-- [ ] Jack reads PR #11 + issue #10 (his pace, no rush)
+- [x] ~~LLC filing acknowledgment~~ — **Articles APPROVED + e-filed
+      2026-07-16, same day.** The LLC is fully official; EIN unblocked.
+- [x] ~~Domain registration~~ — registered 2026-07-16; site live with
+      HTTPS enforced at https://vapor.engineering same day.
+- [ ] Jack reads PR #11 (operating agreement) — his pace, no rush. (He
+      cleared #8/#12 and shipped his own STEAM-RELEASE.md absorbing #10.)
 
 ## Next, in dependency order
 
