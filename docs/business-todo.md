@@ -69,9 +69,12 @@
 - **Trademark registration** — revisit when a title has a locked name and
   a store page (USPTO ~$250-350/class; premature before that).
 - **Business insurance** — revisit at first revenue or first contractor.
-- **FinCEN BOI report** — domestic LLCs were exempted from beneficial-
-  ownership reporting by the 2025 interim rule; VERIFY current rule at
-  fincen.gov when the EIN arrives (rules moved several times).
+- **FinCEN BOI report** — VERIFIED 2026-07-17: the March 2025 interim
+  final rule's domestic exemption stands (per FinCEN's release + current
+  law-firm CTA trackers); domestic LLCs file nothing. fincen.gov itself
+  was unreachable during the check — one personal glance at
+  fincen.gov/boi to confirm no final-rule reversal wouldn't hurt.
+  Re-verify if a final rule is announced.
 - **Accountant** — revisit at first revenue year-end, or when Jack joins
   (partnership return year one is worth professional eyes).
 - **S-corp election** — a tax optimization that only makes sense at real

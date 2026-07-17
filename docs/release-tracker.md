@@ -28,7 +28,7 @@ The legal/financial spine. Detail: `business-todo.md`.
       delivery tested 2026-07-17)
 - [ ] DBA decision (only when a store page gets built)
 
-## Bucket II — Page-live / wishlistable (5%)
+## Bucket II — Page-live / wishlistable (10%)
 
 Everything between now and a Coming Soon page collecting wishlists.
 Detail: `steam-page-checklist.md` + STEAM-PAGE.md. Target: live 6+ months
@@ -36,7 +36,11 @@ before ship.
 
 - [ ] 1.0 fence decided (guitar-only vs guitar + jam v1 — ROADMAP.md;
       deadline is THIS list, per Eli's #13 review)
-- [ ] Final title decided + collision-searched
+- [~] Final title decided + collision-searched (search DONE 2026-07-17:
+      "DeNoodler" clear — zero Steam results, no USPTO hits, no web
+      collisions, denoodler.com/.io unregistered. Decision = the two of
+      you saying "yes, that's the name"; grabbing the .com is ~$12 and
+      closes the loop)
 - [~] Copy drafted (short description / About This Game candidates exist
       in STEAM-PAGE.md, unreviewed)
 - [ ] Capsule art family (the one asset worth commissioning)
