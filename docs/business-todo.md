@@ -25,8 +25,10 @@
        in Eli's records (number deliberately not in this public repo). — Eli
 2. [x] **Business bank account** — Mercury APPROVED 2026-07-16 (same
        day!). Steam pays here; migrate reimbursements + renewals here. — Eli
-3. [ ] **Bookkeeping, minimum viable** — a spreadsheet is fine at this
-       scale: the fronted-expense ledger + every company transaction.
+3. [x] **Bookkeeping, minimum viable** — DONE 2026-07-17:
+       music-as-code `business/bookkeeping.xlsx` (fronted-expense ledger
+       seeded with the $271 + Mercury transaction log + Read Me).
+       Discipline: add a row per transaction, commit after updates.
        Upgrade to real software when there's revenue. — Eli
 4. [x] **Email on the domain** — DONE 2026-07-17: ImprovMX free tier,
        MX + SPF as Terraform in `infra/dns.tf`. support@, hello@, and a
