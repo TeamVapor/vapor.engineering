@@ -10,7 +10,7 @@
 > (`index.html`) — update them together, no fancier pipeline until this
 > gets annoying by hand.
 
-## Bucket I — Company (65%)
+## Bucket I — Company (75%)
 
 The legal/financial spine. Detail: `business-todo.md`.
 
@@ -19,7 +19,8 @@ The legal/financial spine. Detail: `business-todo.md`.
 - [x] EIN assigned
 - [x] Business bank account (Mercury)
 - [x] Operating agreement drafted (music-as-code PR #11)
-- [ ] Operating agreement reviewed + signed (both members, in person)
+- [x] Operating agreement reviewed + signed (2026-07-17: $1,000 threshold,
+      24-month drift window; scan in music-as-code business/signed/)
 - [~] Steamworks partner verification (submitted 2026-07-16, 2–7 business days)
 - [ ] Bookkeeping, minimum viable (ledger → every company transaction)
 - [x] Email on the domain (support@ / hello@ / catch-all via ImprovMX,

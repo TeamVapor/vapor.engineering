@@ -17,8 +17,7 @@
       2026-07-16, same day.** The LLC is fully official; EIN unblocked.
 - [x] ~~Domain registration~~ — registered 2026-07-16; site live with
       HTTPS enforced at https://vapor.engineering same day.
-- [ ] Jack reads PR #11 (operating agreement) — his pace, no rush. (He
-      cleared #8/#12 and shipped his own STEAM-RELEASE.md absorbing #10.)
+- [x] ~~Jack reads PR #11~~ — merged, then SIGNED (see item 8).
 
 ## Next, in dependency order
 
@@ -49,8 +48,11 @@
 7. [ ] **DBA decisions** — if a game ships under "Vapor Studios" or
        "TeamVapor" branding, file the assumed business name (~$50, Oregon
        online). Decide when store pages get built, not before. — both
-8. [ ] **Signing day** — operating agreement: discuss, edit, print two,
-       sign (see PR #11). Calendar it once Jack's read the draft. — both
+8. [x] **Signing day** — DONE 2026-07-17: both members signed two paper
+       originals (one each); blanks filled in ink and initialed — Big
+       Decision spending threshold **$1,000**, drift window **24 months**.
+       Scan filed at music-as-code
+       `business/signed/operating-agreement-SIGNED-2026-07-17.pdf`. — both
 
 ## Recurring (calendar these now)
 
