@@ -43,6 +43,37 @@
   }
   .tag { color: var(--dim); font-size: 1.05rem; line-height: 1.6; }
   .tag b { color: var(--cyan); font-weight: 600; }
+  .bars {
+    width: min(320px, 70vw);
+    margin: 2rem auto 0;
+    display: grid;
+    gap: .7rem;
+  }
+  .bar {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr 2.6rem;
+    align-items: center;
+    gap: .6rem;
+    font-size: .8rem;
+    color: var(--dim);
+    letter-spacing: .08em;
+  }
+  .bar .num { text-align: left; color: #55506b; font-weight: 600; }
+  .bar .pct { text-align: right; font-variant-numeric: tabular-nums; }
+  .track {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(141, 134, 168, .18);
+    overflow: hidden;
+  }
+  .fill {
+    display: block;
+    height: 100%;
+    width: var(--p);
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--pink), var(--cyan));
+    box-shadow: 0 0 10px rgba(255, 90, 190, .35);
+  }
   footer {
     position: fixed;
     bottom: 1.2rem;
@@ -54,6 +85,8 @@
   @media (prefers-reduced-motion: no-preference) {
     .dash { animation: drift 6s linear infinite; }
     @keyframes drift { to { stroke-dashoffset: -120; } }
+    .fill { animation: fill 1.4s cubic-bezier(.2, .8, .2, 1) backwards; }
+    @keyframes fill { from { width: 0; } }
   }
 </style>
 </head>
@@ -69,6 +102,11 @@
     </circle>
   </svg>
   <p class="tag">An independent game studio.<br><b>Something is taking shape.</b></p>
+  <div class="bars" title="you'll see">
+    <div class="bar"><span class="num">I</span><span class="track"><span class="fill" style="--p:55%"></span></span><span class="pct">55%</span></div>
+    <div class="bar"><span class="num">II</span><span class="track"><span class="fill" style="--p:5%"></span></span><span class="pct">5%</span></div>
+    <div class="bar"><span class="num">III</span><span class="track"><span class="fill" style="--p:5%"></span></span><span class="pct">5%</span></div>
+  </div>
 </main>
 <footer>&copy; 2026 Vapor Engineering LLC &middot; Oregon</footer>
 </body>
