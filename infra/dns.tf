@@ -37,6 +37,28 @@ resource "aws_route53_record" "apex_aaaa" {
   ]
 }
 
+# Email forwarding via ImprovMX (free tier): support@/hello@ -> personal
+# inboxes. Aliases are managed in the ImprovMX dashboard, not here.
+# SPF authorizes ImprovMX to send (forwarded mail + optional send-as SMTP).
+resource "aws_route53_record" "mx" {
+  zone_id = data.aws_route53_zone.vapor.zone_id
+  name    = "vapor.engineering"
+  type    = "MX"
+  ttl     = 300
+  records = [
+    "10 mx1.improvmx.com",
+    "20 mx2.improvmx.com",
+  ]
+}
+
+resource "aws_route53_record" "spf" {
+  zone_id = data.aws_route53_zone.vapor.zone_id
+  name    = "vapor.engineering"
+  type    = "TXT"
+  ttl     = 300
+  records = ["v=spf1 include:spf.improvmx.com ~all"]
+}
+
 resource "aws_route53_record" "www" {
   zone_id = data.aws_route53_zone.vapor.zone_id
   name    = "www.vapor.engineering"
