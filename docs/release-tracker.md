@@ -10,7 +10,7 @@
 > (`index.html`) — update them together, no fancier pipeline until this
 > gets annoying by hand.
 
-## Bucket I — Company (55%)
+## Bucket I — Company (65%)
 
 The legal/financial spine. Detail: `business-todo.md`.
 
@@ -22,7 +22,8 @@ The legal/financial spine. Detail: `business-todo.md`.
 - [ ] Operating agreement reviewed + signed (both members, in person)
 - [~] Steamworks partner verification (submitted 2026-07-16, 2–7 business days)
 - [ ] Bookkeeping, minimum viable (ledger → every company transaction)
-- [ ] Email on the domain (support@ / hello@)
+- [x] Email on the domain (support@ / hello@ / catch-all via ImprovMX,
+      delivery tested 2026-07-17)
 - [ ] DBA decision (only when a store page gets built)
 
 ## Bucket II — Page-live / wishlistable (5%)

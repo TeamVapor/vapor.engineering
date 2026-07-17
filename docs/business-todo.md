@@ -29,11 +29,12 @@
 3. [ ] **Bookkeeping, minimum viable** — a spreadsheet is fine at this
        scale: the fronted-expense ledger + every company transaction.
        Upgrade to real software when there's revenue. — Eli
-4. [ ] **Email on the domain** — support@ and hello@ vapor.engineering
-       (Steam page needs a support contact; store fronts shouldn't use
-       personal gmail). Cheapest paths: email forwarding via
-       ImprovMX/Cloudflare (free) or Zoho Mail (free tier) before paying
-       for Google Workspace. — Eli
+4. [x] **Email on the domain** — DONE 2026-07-17: ImprovMX free tier,
+       MX + SPF as Terraform in `infra/dns.tf`. support@, hello@, and a
+       catch-all forward to both members; test delivery confirmed.
+       Replying AS support@ (send-as via ImprovMX SMTP) not set up —
+       revisit if support volume ever warrants it (Zoho/Workspace is the
+       upgrade path). — Eli
 5. [x] **DNS + site live** — done 2026-07-16: records managed as Terraform
        in `infra/` (imported, plan clean), site serving at
        vapor.engineering; HTTPS enforcement flips when GitHub's cert
