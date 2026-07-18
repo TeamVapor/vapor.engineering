@@ -56,6 +56,20 @@
        Scan filed at music-as-code
        `business/signed/operating-agreement-SIGNED-2026-07-17.pdf`. — both
 
+## The partnership refile chain (added 2026-07-18 — admission effective
+## 2026-07-17 per the signed agreement + #39; order matters)
+
+1. [ ] Let the in-flight Steamworks verification finish (individual W-9 +
+       KYC submitted 07-17; don't touch while pending) — Eli
+2. [ ] Accountant/professional review BEFORE the 2026 tax season (short-year
+       1065 question, capital accounts, nominal DeNoodler IP valuation) —
+       Eli finds the pro, both attend
+3. [ ] Retake the Steam tax interview as a partnership with the EIN (before
+       any revenue; after 1, ideally after 2 — EIN will be aged into IRS
+       TIN-matching by then) — Eli
+4. [ ] Mercury full member access for Jack — Eli invites, Jack accepts
+5. [ ] Oregon annual report member update, next anniversary (2027-07-16) — Eli
+
 ## Recurring (calendar these now)
 
 | What | When | Amount |
