@@ -8,9 +8,13 @@ Company site + infrastructure for **Vapor Engineering LLC** (the TeamVapor studi
 
 Three independent pieces:
 
-- **`index.html`** — the entire site: a static, zero-dependency coming-soon page. GitHub Pages serves it from `main`, so pushing to `main` *is* the deploy. `CNAME` binds the custom domain (`vapor.engineering`) — don't delete or rename it. No build, lint, or test tooling exists anywhere in this repo.
-- **`infra/`** — Terraform root #1: Route 53 DNS records (GitHub Pages apex/www + ImprovMX email). The hosted zone is a **data source, not a resource** — Route 53 Domains owns it; Terraform only manages records inside it, so a destroy can never take down the zone or domain. Keep it that way.
+- **`index.html`** — the entire site: a static, zero-dependency page (project teasers, demo embed, feedback box). GitHub Pages serves it from `main`, so merging to `main` *is* the deploy — and Pages sometimes misses the merge hook, so if the live site lags, queue a build: `gh api -X POST repos/TeamVapor/vapor.engineering/pages/builds`. `CNAME` binds the custom domain (`vapor.engineering`) — don't delete or rename it. No build, lint, or test tooling exists anywhere in this repo.
+- **`infra/`** — Terraform root #1: Route 53 DNS records (GitHub Pages apex/www + ImprovMX email) **plus the site-feedback stack** (below). The hosted zone is a **data source, not a resource** — Route 53 Domains owns it; Terraform only manages records inside it, so a destroy can never take down the zone or domain. Keep it that way.
 - **`infra/jamrelay/`** — Terraform root #2 (separate state): the jam-parcel relay.
+
+Two constants in `index.html` couple it to the outside world:
+- `DEMO_URL` — the playable teaser, served from the public artifact-only repo **TeamVapor/vapor-teaser-web** (Pages). Source + pipeline docs live in the private vapor-teaser repo and vapor-drag-racing's README/CLAUDE.md. The website never changes when the demo updates — only if that URL does.
+- `FEEDBACK_URL` — the feedback box endpoint (public by nature, fine to commit — unlike the jam relay URL).
 
 `docs/` is business/planning material (LLC checklist, Steam page spec, release tracker), not code documentation. `docs/business-todo.md` is the source of truth for company-status facts and pending migrations.
 
@@ -24,6 +28,12 @@ terraform init
 terraform plan
 terraform apply   # jamrelay: prints relay_url
 ```
+
+## The site feedback stack (infra/feedback.tf + feedback.py)
+
+The site's feedback box posts to the "scribe" Lambda (`vapor-site-feedback`, Function URL, CORS locked to the site origin — it will not work from localhost). Each submission is written to `s3://vapor-engineering-feedback/feedback/YYYY/MM/DD/` (**no lifecycle expiry — feedback keeps forever**) and published to the SNS topic `vapor-site-feedback`, which emails hello@vapor.engineering (ImprovMX fans out to both members). The SNS publish is deliberately best-effort: S3 is the source of truth, email is a convenience.
+
+Caps are layered like jamrelay's — 8KB body, 4000-char message, 64-char name (Lambda) and reserved concurrency 1 (cost fuse). Editing `feedback.py` + `terraform apply` redeploys via source hash.
 
 ## The jam-parcel relay (jamrelay)
 
