@@ -155,46 +155,6 @@
     box-shadow: 0 0 12px rgba(255, 90, 190, .4);
   }
 
-  /* studio meters */
-  .bars {
-    width: min(320px, 70vw);
-    margin: 0 auto;
-    display: grid;
-    gap: .7rem;
-  }
-  .bar {
-    display: grid;
-    grid-template-columns: 1.4rem 1fr 2.6rem;
-    align-items: center;
-    gap: .6rem;
-    font-size: .8rem;
-    color: var(--dim);
-    letter-spacing: .08em;
-  }
-  .bar .num { text-align: left; color: var(--faint); font-weight: 600; }
-  .bar .pct { text-align: right; font-variant-numeric: tabular-nums; }
-  .track {
-    height: 6px;
-    border-radius: 3px;
-    background: rgba(141, 134, 168, .18);
-    overflow: hidden;
-  }
-  .fill {
-    display: block;
-    height: 100%;
-    width: var(--p);
-    border-radius: 3px;
-    background: linear-gradient(90deg, var(--pink), var(--cyan));
-    box-shadow: 0 0 10px rgba(255, 90, 190, .35);
-  }
-  .bars-note {
-    text-align: center;
-    color: var(--faint);
-    font-size: .75rem;
-    letter-spacing: .1em;
-    margin-top: 1rem;
-  }
-
   /* demo embed */
   .demo-btn {
     justify-self: start;
@@ -278,8 +238,6 @@
   @media (prefers-reduced-motion: no-preference) {
     .dash { animation: drift 6s linear infinite; }
     @keyframes drift { to { stroke-dashoffset: -120; } }
-    .fill { animation: fill 1.4s cubic-bezier(.2, .8, .2, 1) backwards; }
-    @keyframes fill { from { width: 0; } }
 
     .seq .head { animation: sweep 2.4s steps(16) infinite; }
     @keyframes sweep { to { left: 100%; } }
@@ -367,15 +325,6 @@
       <p class="demo-note" id="demo-note" hidden>~40MB, loads in your browser. Nothing to install.</p>
     </article>
 
-  </section>
-
-  <section>
-    <div class="bars" title="you'll see">
-      <div class="bar"><span class="num">I</span><span class="track"><span class="fill" style="--p:85%"></span></span><span class="pct">85%</span></div>
-      <div class="bar"><span class="num">II</span><span class="track"><span class="fill" style="--p:20%"></span></span><span class="pct">20%</span></div>
-      <div class="bar"><span class="num">III</span><span class="track"><span class="fill" style="--p:5%"></span></span><span class="pct">5%</span></div>
-    </div>
-    <p class="bars-note">you'll see</p>
   </section>
 
   <section class="feedback" id="feedback" hidden>

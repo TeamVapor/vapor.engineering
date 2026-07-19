@@ -6,9 +6,9 @@
 > `STEAM-PAGE.md`, `ROADMAP.md`, `TESTING.md`, `PLAN.md` (music-as-code).
 >
 > Scoring: `[x]` = 1, `[~]` = 0.5, `[ ]` = 0. Bucket % = points / items,
-> rounded to 5. The three numbers feed the bars on the front page
-> (`index.html`) — update them together, no fancier pipeline until this
-> gets annoying by hand.
+> rounded to 5. (The front page showed these as three cryptic bars until
+> 2026-07-19; now that real project teasers are up, the numbers live only
+> here.)
 
 ## Bucket I — Company (85%)
 
