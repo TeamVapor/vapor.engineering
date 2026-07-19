@@ -13,11 +13,13 @@ import time
 import boto3
 
 BUCKET = os.environ["BUCKET"]
+TOPIC_ARN = os.environ["TOPIC_ARN"]
 MAX_BODY_BYTES = 8 * 1024
 MAX_MESSAGE_CHARS = 4000
 MAX_NAME_CHARS = 64
 
 s3 = boto3.client("s3")
+sns = boto3.client("sns")
 
 
 def _reply(code, body):
@@ -60,4 +62,13 @@ def handler(event, _context):
         }).encode(),
         ContentType="application/json",
     )
+    # notify is best-effort: the feedback is already safe in S3
+    try:
+        sns.publish(
+            TopicArn=TOPIC_ARN,
+            Subject=f"vapor.engineering feedback from {name or 'anonymous'}"[:100],
+            Message=f"{message}\n\n— {name or 'anonymous'}\n{key}",
+        )
+    except Exception:
+        pass
     return _reply(200, {"ok": True})

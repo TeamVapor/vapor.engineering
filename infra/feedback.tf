@@ -18,6 +18,20 @@ resource "aws_s3_bucket_public_access_block" "feedback" {
   restrict_public_buckets = true
 }
 
+# every submission gets published here with the full message text;
+# email subscription -> hello@ (ImprovMX fans it out to both members).
+# NOTE: the subscription stays "pending" until someone clicks the
+# confirmation link SNS emails to hello@.
+resource "aws_sns_topic" "feedback" {
+  name = "vapor-site-feedback"
+}
+
+resource "aws_sns_topic_subscription" "feedback_email" {
+  topic_arn = aws_sns_topic.feedback.arn
+  protocol  = "email"
+  endpoint  = "hello@vapor.engineering"
+}
+
 data "archive_file" "feedback" {
   type        = "zip"
   source_file = "${path.module}/feedback.py"
@@ -49,6 +63,11 @@ resource "aws_iam_role_policy" "feedback" {
       },
       {
         Effect   = "Allow"
+        Action   = ["sns:Publish"]
+        Resource = aws_sns_topic.feedback.arn
+      },
+      {
+        Effect   = "Allow"
         Action   = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
         Resource = "arn:aws:logs:*:*:*"
       },
@@ -70,7 +89,10 @@ resource "aws_lambda_function" "feedback" {
   reserved_concurrent_executions = 1
 
   environment {
-    variables = { BUCKET = aws_s3_bucket.feedback.bucket }
+    variables = {
+      BUCKET    = aws_s3_bucket.feedback.bucket
+      TOPIC_ARN = aws_sns_topic.feedback.arn
+    }
   }
 }
 
