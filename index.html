@@ -185,7 +185,6 @@
     border: 0;
     display: block;
   }
-  .demo-note { font-size: .78rem; color: var(--faint); }
 
   /* feedback box */
   .feedback {
@@ -316,14 +315,12 @@
       <div id="demo-slot" hidden>
         <button class="demo-btn" id="demo-btn" type="button">RUN THE DEMO &#9654;</button>
       </div>
-      <p class="demo-note" id="demo-note" hidden>~40MB, loads in your browser. Nothing to install.</p>
     </article>
 
   </section>
 
   <section class="feedback" id="feedback" hidden>
     <h2>OPEN CHANNEL // <b>TELL US THINGS</b></h2>
-    <p>Feedback is gold. No signup, no forms-of-forms — type it, hit enter, it lands on our desk.</p>
     <textarea id="fb-message" maxlength="4000" rows="3"
       placeholder="What did you see? What broke? What should exist?"></textarea>
     <div class="row">
@@ -345,7 +342,6 @@
   const DEMO_URL = "https://teamvapor.github.io/vapor-teaser-web/";
   if (DEMO_URL) {
     document.getElementById("demo-slot").hidden = false;
-    document.getElementById("demo-note").hidden = false;
     document.getElementById("demo-btn").addEventListener("click", () => {
       const slot = document.getElementById("demo-slot");
       slot.innerHTML = '<div class="demo-shell"><iframe src="' + DEMO_URL + '" allow="autoplay" title="Vapor drag racing tech demo"></iframe></div>';
