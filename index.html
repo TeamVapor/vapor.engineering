@@ -4,27 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vapor Engineering</title>
-<meta name="description" content="Vapor Engineering — an independent game studio. Something is taking shape.">
+<meta name="description" content="Vapor Engineering — an independent game studio. Two signals and counting.">
 <style>
   :root {
     --bg: #100e1a;
+    --panel: #171427;
+    --edge: #2a2545;
     --ink: #e8e4f2;
     --dim: #8d86a8;
+    --faint: #55506b;
     --pink: #ff5abe;
     --cyan: #78f0ff;
+    --amber: #ffc14d;
+    --green: #6dff9c;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
   body {
-    background: radial-gradient(120% 100% at 50% 0%, #1a1630 0%, var(--bg) 60%);
+    background: radial-gradient(120% 80% at 50% 0%, #1a1630 0%, var(--bg) 60%);
     color: var(--ink);
     font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    overflow: hidden;
+    min-height: 100vh;
   }
-  main { padding: 2rem; max-width: 40rem; }
+  .page {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+    display: grid;
+    gap: 3.5rem;
+  }
+
+  /* hero */
+  .hero { text-align: center; }
   .mark {
     font-size: clamp(2.2rem, 7vw, 4rem);
     font-weight: 800;
@@ -37,15 +47,118 @@
   }
   .wave {
     display: block;
-    margin: 1.6rem auto 1.8rem;
+    margin: 1.4rem auto 1.6rem;
     width: min(320px, 70vw);
     height: 56px;
   }
   .tag { color: var(--dim); font-size: 1.05rem; line-height: 1.6; }
   .tag b { color: var(--cyan); font-weight: 600; }
+
+  /* project cards */
+  .signals { display: grid; gap: 1.4rem; }
+  .signal {
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), var(--panel);
+    border: 1px solid var(--edge);
+    border-radius: 14px;
+    padding: 1.6rem 1.7rem 1.7rem;
+    display: grid;
+    gap: 1rem;
+  }
+  .signal header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .signal h2 {
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .22em;
+    color: var(--faint);
+  }
+  .signal h2 b { color: var(--ink); font-weight: 700; }
+  .chip {
+    font-size: .7rem;
+    letter-spacing: .14em;
+    color: var(--bg);
+    background: var(--cyan);
+    border-radius: 999px;
+    padding: .25rem .7rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .chip.pink { background: var(--pink); }
+  .signal p { color: var(--dim); line-height: 1.65; font-size: .98rem; }
+  .signal p b { color: var(--ink); font-weight: 600; }
+
+  /* signal 01: the sequencer strip */
+  .seq {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 4px;
+    height: 30px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+  }
+  .seq i {
+    background: rgba(141, 134, 168, .14);
+    border-radius: 3px;
+  }
+  .seq i.on { background: rgba(255, 90, 190, .55); }
+  .seq i.alt { background: rgba(120, 240, 255, .45); }
+  .seq .head {
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 6.25%;
+    background: rgba(232, 228, 242, .16);
+    border-radius: 3px;
+  }
+
+  /* signal 02: the tree + strip */
+  .strip {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    height: 64px;
+  }
+  .tree {
+    display: grid;
+    gap: 6px;
+    justify-items: center;
+  }
+  .tree i {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: rgba(141, 134, 168, .18);
+  }
+  .lane {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    border-radius: 8px;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 26px, rgba(141,134,168,.16) 26px 34px)
+      center / 100% 3px no-repeat,
+      rgba(141, 134, 168, .07);
+    overflow: hidden;
+  }
+  .car {
+    position: absolute;
+    top: 50%;
+    left: -14%;
+    width: 44px; height: 16px;
+    transform: translateY(-50%);
+    border-radius: 4px 8px 8px 3px;
+    background: linear-gradient(90deg, var(--pink), var(--cyan));
+    box-shadow: 0 0 12px rgba(255, 90, 190, .4);
+  }
+
+  /* studio meters */
   .bars {
     width: min(320px, 70vw);
-    margin: 2rem auto 0;
+    margin: 0 auto;
     display: grid;
     gap: .7rem;
   }
@@ -58,7 +171,7 @@
     color: var(--dim);
     letter-spacing: .08em;
   }
-  .bar .num { text-align: left; color: #55506b; font-weight: 600; }
+  .bar .num { text-align: left; color: var(--faint); font-weight: 600; }
   .bar .pct { text-align: right; font-variant-numeric: tabular-nums; }
   .track {
     height: 6px;
@@ -74,40 +187,258 @@
     background: linear-gradient(90deg, var(--pink), var(--cyan));
     box-shadow: 0 0 10px rgba(255, 90, 190, .35);
   }
-  footer {
-    position: fixed;
-    bottom: 1.2rem;
+  .bars-note {
+    text-align: center;
+    color: var(--faint);
+    font-size: .75rem;
+    letter-spacing: .1em;
+    margin-top: 1rem;
+  }
+
+  /* demo embed */
+  .demo-btn {
+    justify-self: start;
+    font: inherit;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: var(--bg);
+    background: linear-gradient(90deg, var(--pink), var(--cyan));
+    border: none;
+    border-radius: 999px;
+    padding: .6rem 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 0 14px rgba(255, 90, 190, .35);
+  }
+  .demo-btn:hover { filter: brightness(1.15); }
+  .demo-shell {
+    aspect-ratio: 16 / 9;
     width: 100%;
-    color: #55506b;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--edge);
+    background: #000;
+  }
+  .demo-shell iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .demo-note { font-size: .78rem; color: var(--faint); }
+
+  /* feedback box */
+  .feedback {
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), var(--panel);
+    border: 1px solid var(--edge);
+    border-radius: 14px;
+    padding: 1.6rem 1.7rem;
+    display: grid;
+    gap: .9rem;
+  }
+  .feedback h2 {
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .22em;
+    color: var(--faint);
+  }
+  .feedback h2 b { color: var(--ink); }
+  .feedback p { color: var(--dim); font-size: .9rem; line-height: 1.6; }
+  .feedback input, .feedback textarea {
+    font: inherit;
+    font-size: .95rem;
+    color: var(--ink);
+    background: rgba(141, 134, 168, .08);
+    border: 1px solid var(--edge);
+    border-radius: 8px;
+    padding: .65rem .8rem;
+    width: 100%;
+  }
+  .feedback textarea { resize: vertical; min-height: 4.5rem; }
+  .feedback input:focus, .feedback textarea:focus {
+    outline: none;
+    border-color: var(--cyan);
+  }
+  .feedback ::placeholder { color: var(--faint); }
+  .feedback .row { display: flex; gap: .8rem; flex-wrap: wrap; align-items: center; }
+  .feedback .row input { flex: 1; min-width: 12rem; }
+  .feedback .status { font-size: .85rem; color: var(--cyan); min-height: 1.2em; }
+  .feedback .status.err { color: var(--pink); }
+
+  footer {
+    text-align: center;
+    color: var(--faint);
     font-size: .8rem;
     letter-spacing: .06em;
+    line-height: 2;
   }
+  footer a { color: var(--dim); text-decoration: none; }
+  footer a:hover { color: var(--cyan); }
+
   @media (prefers-reduced-motion: no-preference) {
     .dash { animation: drift 6s linear infinite; }
     @keyframes drift { to { stroke-dashoffset: -120; } }
     .fill { animation: fill 1.4s cubic-bezier(.2, .8, .2, 1) backwards; }
     @keyframes fill { from { width: 0; } }
+
+    .seq .head { animation: sweep 2.4s steps(16) infinite; }
+    @keyframes sweep { to { left: 100%; } }
+    .seq i.on, .seq i.alt { animation: pulse 2.4s infinite; }
+    .seq i.on:nth-child(4n+1) { animation-delay: .3s; }
+    .seq i.alt { animation-delay: .9s; }
+    @keyframes pulse { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.5); } }
+
+    /* one 6s race: ambers stage, green, launch */
+    .tree .a1 { animation: light 6s infinite; }
+    .tree .a2 { animation: light 6s infinite .35s; }
+    .tree .a3 { animation: light 6s infinite .7s; }
+    .tree .go { animation: golight 6s infinite; }
+    @keyframes light {
+      0%, 12% { background: rgba(141,134,168,.18); box-shadow: none; }
+      14%, 30% { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+      32%, 100% { background: rgba(141,134,168,.18); box-shadow: none; }
+    }
+    @keyframes golight {
+      0%, 30% { background: rgba(141,134,168,.18); box-shadow: none; }
+      32%, 70% { background: var(--green); box-shadow: 0 0 10px var(--green); }
+      72%, 100% { background: rgba(141,134,168,.18); box-shadow: none; }
+    }
+    .car { animation: launch 6s cubic-bezier(.6, 0, .9, .4) infinite; }
+    @keyframes launch {
+      0%, 31% { left: -14%; }
+      32% { left: -13%; }
+      58%, 100% { left: 112%; }
+    }
   }
 </style>
 </head>
 <body>
-<main>
-  <h1 class="mark"><span class="vapor">VAPOR</span> <span class="eng">ENGINEERING</span></h1>
-  <svg class="wave" viewBox="0 0 320 56" fill="none" aria-hidden="true">
-    <path class="dash" d="M8 28 C 36 4, 60 4, 88 28 S 140 52, 168 28 S 220 4, 248 28"
-          stroke="#ff5abe" stroke-width="5" stroke-linecap="round"
-          stroke-dasharray="10 10" opacity=".9"/>
-    <circle cx="272" cy="28" r="10" fill="#78f0ff">
-      <animate attributeName="opacity" values="1;.5;1" dur="2.4s" repeatCount="indefinite"/>
-    </circle>
-  </svg>
-  <p class="tag">An independent game studio.<br><b>Something is taking shape.</b></p>
-  <div class="bars" title="you'll see">
-    <div class="bar"><span class="num">I</span><span class="track"><span class="fill" style="--p:85%"></span></span><span class="pct">85%</span></div>
-    <div class="bar"><span class="num">II</span><span class="track"><span class="fill" style="--p:20%"></span></span><span class="pct">20%</span></div>
-    <div class="bar"><span class="num">III</span><span class="track"><span class="fill" style="--p:5%"></span></span><span class="pct">5%</span></div>
-  </div>
-</main>
-<footer>&copy; 2026 Vapor Engineering LLC &middot; Oregon</footer>
+<div class="page">
+
+  <section class="hero">
+    <h1 class="mark"><span class="vapor">VAPOR</span> <span class="eng">ENGINEERING</span></h1>
+    <svg class="wave" viewBox="0 0 320 56" fill="none" aria-hidden="true">
+      <path class="dash" d="M8 28 C 36 4, 60 4, 88 28 S 140 52, 168 28 S 220 4, 248 28"
+            stroke="#ff5abe" stroke-width="5" stroke-linecap="round"
+            stroke-dasharray="10 10" opacity=".9"/>
+      <circle cx="272" cy="28" r="10" fill="#78f0ff">
+        <animate attributeName="opacity" values="1;.5;1" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    <p class="tag">An independent game studio.<br><b>Two signals and counting.</b></p>
+  </section>
+
+  <section class="signals">
+
+    <article class="signal">
+      <header>
+        <h2>SIGNAL 01 // <b>THE JAM</b></h2>
+        <span class="chip pink">IN THE LAB</span>
+      </header>
+      <div class="seq" aria-hidden="true">
+        <i class="on"></i><i></i><i class="alt"></i><i></i>
+        <i class="on"></i><i></i><i></i><i class="alt"></i>
+        <i class="on"></i><i></i><i class="alt"></i><i></i>
+        <i class="on"></i><i class="alt"></i><i></i><i class="on"></i>
+        <span class="head"></span>
+      </div>
+      <p>It started as a jam that wouldn't stop. Now it's a game about
+      <b>actually playing</b> — patterns, cycles, real strings under real
+      fingers. Practice that stopped feeling like practice.</p>
+    </article>
+
+    <article class="signal">
+      <header>
+        <h2>SIGNAL 02 // <b>THE STRIP</b></h2>
+        <span class="chip">WARMING UP</span>
+      </header>
+      <div class="strip" aria-hidden="true">
+        <div class="tree">
+          <i class="a1"></i><i class="a2"></i><i class="a3"></i><i class="go"></i>
+        </div>
+        <div class="lane"><span class="car"></span></div>
+      </div>
+      <p>1,320 feet and <b>nobody scripts the winner</b> — the physics
+      decides. Cars that wheelie, split in half, or shake themselves apart.
+      Sometimes the front half finishes alone. It still counts.</p>
+      <div id="demo-slot" hidden>
+        <button class="demo-btn" id="demo-btn" type="button">RUN THE DEMO &#9654;</button>
+      </div>
+      <p class="demo-note" id="demo-note" hidden>~40MB, loads in your browser. Nothing to install.</p>
+    </article>
+
+  </section>
+
+  <section>
+    <div class="bars" title="you'll see">
+      <div class="bar"><span class="num">I</span><span class="track"><span class="fill" style="--p:85%"></span></span><span class="pct">85%</span></div>
+      <div class="bar"><span class="num">II</span><span class="track"><span class="fill" style="--p:20%"></span></span><span class="pct">20%</span></div>
+      <div class="bar"><span class="num">III</span><span class="track"><span class="fill" style="--p:5%"></span></span><span class="pct">5%</span></div>
+    </div>
+    <p class="bars-note">you'll see</p>
+  </section>
+
+  <section class="feedback" id="feedback" hidden>
+    <h2>OPEN CHANNEL // <b>TELL US THINGS</b></h2>
+    <p>Feedback is gold. No signup, no forms-of-forms — type it, hit enter, it lands on our desk.</p>
+    <textarea id="fb-message" maxlength="4000" rows="3"
+      placeholder="What did you see? What broke? What should exist?"></textarea>
+    <div class="row">
+      <input id="fb-name" maxlength="64" placeholder="name (optional)">
+      <button class="demo-btn" id="fb-send" type="button">SEND</button>
+    </div>
+    <p class="status" id="fb-status"></p>
+  </section>
+
+  <footer>
+    &copy; 2026 Vapor Engineering LLC &middot; Oregon<br>
+    <a href="mailto:hello@vapor.engineering">hello@vapor.engineering</a>
+  </footer>
+
+</div>
+<script>
+  // the teaser build lives in its own repo (binary churn stays out of this
+  // one); fill in its Pages URL to light the button up
+  const DEMO_URL = "";
+  if (DEMO_URL) {
+    document.getElementById("demo-slot").hidden = false;
+    document.getElementById("demo-note").hidden = false;
+    document.getElementById("demo-btn").addEventListener("click", () => {
+      const slot = document.getElementById("demo-slot");
+      slot.innerHTML = '<div class="demo-shell"><iframe src="' + DEMO_URL + '" allow="autoplay" title="Vapor drag racing tech demo"></iframe></div>';
+    });
+  }
+
+  const FEEDBACK_URL = "https://4fipfyj2nmy2bu42c7ebcsduqu0gjdxe.lambda-url.us-west-2.on.aws/";
+  if (FEEDBACK_URL) {
+    document.getElementById("feedback").hidden = false;
+    const msg = document.getElementById("fb-message");
+    const name = document.getElementById("fb-name");
+    const status = document.getElementById("fb-status");
+    async function send() {
+      const message = msg.value.trim();
+      if (!message) return;
+      status.className = "status";
+      status.textContent = "sending…";
+      try {
+        const res = await fetch(FEEDBACK_URL, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ message, name: name.value.trim() }),
+        });
+        if (!res.ok) throw new Error(res.status);
+        msg.value = "";
+        status.textContent = "got it — thank you ♥";
+      } catch {
+        status.className = "status err";
+        status.textContent = "didn't go through — try again or email us";
+      }
+    }
+    document.getElementById("fb-send").addEventListener("click", send);
+    msg.addEventListener("keydown", e => {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
+    });
+  }
+</script>
 </body>
 </html>
