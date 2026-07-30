@@ -16,7 +16,7 @@ Two constants in `index.html` couple it to the outside world:
 - `DEMO_URL` — the playable teaser, served from the public artifact-only repo **TeamVapor/vapor-teaser-web** (Pages). Source + pipeline docs live in the private vapor-teaser repo and vapor-drag-racing's README/CLAUDE.md. The website never changes when the demo updates — only if that URL does.
 - `FEEDBACK_URL` — the feedback box endpoint (public by nature, fine to commit — unlike the jam relay URL).
 
-`docs/` is business/planning material (LLC checklist, Steam page spec, release tracker), not code documentation. `docs/business-todo.md` is the source of truth for company-status facts and pending migrations.
+`docs/` is planning material (Steam page spec, release tracker), not code documentation. The source of truth for company-status facts and pending migrations is `business-todo.md` in the **private vapor-ops repo** (moved 2026-07-29 — `docs/business-todo.md` here is a pointer stub). Company facts don't get added to this public repo.
 
 ## Terraform
 

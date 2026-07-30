@@ -1,7 +1,7 @@
 # Release tracker — nothing → wishlistable → shipped
 
 > The one rollup. Every item here is owned in detail by another doc — this
-> file just counts them. Sources: `business-todo.md`,
+> file just counts them. Sources: `business-todo.md` (vapor-ops, private),
 > `steam-page-checklist.md` (this repo); `studio/docs/STEAM-RELEASE.md`,
 > `STEAM-PAGE.md`, `ROADMAP.md`, `TESTING.md`, `PLAN.md` (music-as-code).
 >
@@ -12,7 +12,7 @@
 
 ## Bucket I — Company (85%)
 
-The legal/financial spine. Detail: `business-todo.md`.
+The legal/financial spine. Detail: `business-todo.md` in vapor-ops.
 
 - [x] Oregon LLC filed + Articles approved (#260312492)
 - [x] vapor.engineering registered, site live, HTTPS
@@ -20,10 +20,10 @@ The legal/financial spine. Detail: `business-todo.md`.
 - [x] Business bank account (Mercury)
 - [x] Operating agreement drafted (music-as-code PR #11)
 - [x] Operating agreement reviewed + signed (2026-07-17: $1,000 threshold,
-      24-month drift window; scan in music-as-code business/signed/)
+      24-month drift window; scan in vapor-ops business/signed/)
 - [~] Steamworks partner verification (submitted 2026-07-16, 2–7 business days)
 - [x] Bookkeeping, minimum viable (business/bookkeeping.xlsx in
-      music-as-code, 2026-07-17)
+      vapor-ops, 2026-07-17)
 - [x] Email on the domain (support@ / hello@ / catch-all via ImprovMX,
       delivery tested 2026-07-17)
 - [ ] DBA decision (only when a store page gets built)
