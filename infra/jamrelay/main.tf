@@ -52,7 +52,18 @@ variable "max_parcel_mb" {
 variable "quota_mb" {
   description = "Per-mailbox quota"
   type        = number
-  default     = 1024
+  default     = 5120
+}
+
+variable "budget_limit_usd" {
+  description = "Monthly account-wide cost alarm (baseline is ~$6/mo before the relay)"
+  type        = number
+  default     = 15
+}
+
+variable "budget_alert_email" {
+  description = "Where budget alerts go (set in terraform.tfvars, which is gitignored)"
+  type        = string
 }
 
 data "aws_s3_bucket" "relay" {
@@ -84,9 +95,9 @@ resource "aws_iam_role_policy" "postmaster" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect   = "Allow"
-        Action   = ["s3:ListBucket"]
-        Resource = data.aws_s3_bucket.relay.arn
+        Effect    = "Allow"
+        Action    = ["s3:ListBucket"]
+        Resource  = data.aws_s3_bucket.relay.arn
         Condition = { StringLike = { "s3:prefix" = "mail/*" } }
       },
       {
@@ -151,6 +162,32 @@ resource "aws_lambda_permission" "public_invoke" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.postmaster.function_name
   principal     = "*"
+}
+
+# Account-wide, not jamrelay-scoped: the hand-made bucket carries no
+# Project tag, and the point is a backstop for any surprise spend.
+resource "aws_budgets_budget" "monthly" {
+  name         = "monthly-cost-alarm"
+  budget_type  = "COST"
+  limit_amount = tostring(var.budget_limit_usd)
+  limit_unit   = "USD"
+  time_unit    = "MONTHLY"
+
+  notification {
+    comparison_operator        = "GREATER_THAN"
+    threshold                  = 100
+    threshold_type             = "PERCENTAGE"
+    notification_type          = "ACTUAL"
+    subscriber_email_addresses = [var.budget_alert_email]
+  }
+
+  notification {
+    comparison_operator        = "GREATER_THAN"
+    threshold                  = 100
+    threshold_type             = "PERCENTAGE"
+    notification_type          = "FORECASTED"
+    subscriber_email_addresses = [var.budget_alert_email]
+  }
 }
 
 output "relay_url" {
