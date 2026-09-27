@@ -37,7 +37,7 @@ in `terraform output relay_url` and in app config / private channels.
 
 Idle: $0. Active: S3 pennies/GB (transient, 30-day max), Lambda free tier
 covers friend-scale traffic forever. The failure-mode caps: 200MB max
-parcel (S3-enforced), 1GB per mailbox (postmaster-enforced), concurrency 2
+parcel (S3-enforced), 5GB per mailbox (postmaster-enforced), concurrency 2
 (Lambda-enforced), 30-day expiry (lifecycle-enforced).
 
 ## Abuse posture (accepted for alpha)
@@ -74,4 +74,6 @@ The design makes cutover a config change, not a migration:
 
 Until then, dev rides Eli's personal account under the `Project=jamrelay`
 tag, so the cost line is at least visible for the fronted-expense ledger
-(realistically $0.00-and-some-dust per month).
+(realistically $0.00-and-some-dust per month). A `monthly-cost-alarm`
+budget ($15, account-wide) emails on actual or forecasted overrun; the
+alert address lives in the gitignored `terraform.tfvars`.
